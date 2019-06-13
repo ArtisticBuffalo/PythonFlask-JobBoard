@@ -24,15 +24,15 @@ def execute_sql(sql, values=(), commit=False, single=False):
     return results
 
 
+@app.teardown_appcontext
 def close_connection(exception):
     connection = getattr(g, '_connection', None)
     if connection != None:
         connection.close
-    @app.teardown_appcontext
+
 
 
 @app.route('/')
 @app.route('/jobs')
-
 def jobs():
     return render_template('index.html')
